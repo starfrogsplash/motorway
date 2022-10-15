@@ -19,9 +19,9 @@ export async function up(knex: Knex): Promise<void> {
             INSERT INTO "vehicles" (id, make, model, state) VALUES (1, 'BMW',  'X1',   'quoted');
             INSERT INTO "vehicles" (id, make, model, state) VALUES (2, 'AUDI', 'A4',   'selling');
             INSERT INTO "vehicles" (id, make, model, state) VALUES (3, 'VW',   'GOLF', 'sold');
-            INSERT INTO "vehicles" (id, make, model, state) VALUES (4, 'BMW',  'X1',   'quoted');
-            INSERT INTO "vehicles" (id, make, model, state) VALUES (5, 'AUDI', 'A4',   'selling');
-            INSERT INTO "vehicles" (id, make, model, state) VALUES (6, 'VW',   'GOLF', 'sold');
+            INSERT INTO "vehicles" (id, make, model, state) VALUES (4, 'BMW',  'X5',   'quoted');
+            INSERT INTO "vehicles" (id, make, model, state) VALUES (5, 'AUDI', 'TT',   'selling');
+            INSERT INTO "vehicles" (id, make, model, state) VALUES (6, 'VW',   'GOLF-GTI', 'sold');
 
         -- Create StateLogs Table
             CREATE TABLE IF NOT EXISTS "stateLogs" (

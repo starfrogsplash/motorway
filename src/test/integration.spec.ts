@@ -2,7 +2,7 @@ import request from 'supertest'
 import { app } from '../app'
 import { globalSetUp } from './global-setup'
 
-describe('documents', () => {
+describe('motorways', () => {
   let knex: any
   const database = 'motorwayTest'
 
@@ -15,12 +15,12 @@ describe('documents', () => {
       done()
    })
   
-    describe('fetch data', () => {
-      it('GET /documents => should return list of all documents', async () => {
-        // const { body: documents, status } = await request(app).get(`/documents`)
+    describe('fetch statelogs', () => {
+      it('GET /motorways => should return list of all motorways', async () => {
+        const { body: statelogs, status } = await request(app).get(`/motorways/BMW/2022-10-10T21:20:24.790Z`)
         expect(null).toEqual(null)
-        // expect(documents.length).toEqual(3)
-        // expect(status).toEqual(200)
+        expect(statelogs.length).toEqual(3)
+        expect(status).toEqual(200)
       })
 
     })
