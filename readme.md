@@ -1,4 +1,4 @@
-# WIKI App API
+# Motorway App API
 
 A motorway app api which has one to many relationship model (vehicles and its statelogs) built using:
 TypeScript, jest, knex, postgres, Docker-compose
