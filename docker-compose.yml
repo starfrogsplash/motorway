@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: motorway
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/pgdata
+    networks:
+      - main
+  dbTest:
+    image: postgres
+    container_name: dbTest
+    hostname: localhost
+    environment:
+      POSTGRES_USER: testUser
+      POSTGRES_PASSWORD: testPassword
+    ports:
+      - "5400:5432"
+    networks:
+      - main
+volumes:
+  pgdata:
+networks:
+  main:
