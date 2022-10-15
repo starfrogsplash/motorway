@@ -30,6 +30,7 @@
     "express-pino-logger": "^7.0.0",
     "jest": "^29.2.0",
     "knex": "^2.3.0",
+    "node-cache": "^5.1.2",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "pino-pretty": "^9.1.1",

@@ -12,7 +12,7 @@ services:
     volumes:
       - pgdata:/pgdata
     networks:
-      - main
+      - motorway
   dbTest:
     image: postgres
     container_name: dbTest
@@ -23,8 +23,8 @@ services:
     ports:
       - "5400:5432"
     networks:
-      - main
+      - motorway
 volumes:
   pgdata:
 networks:
-  main:
+  motorway:

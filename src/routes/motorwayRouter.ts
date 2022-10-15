@@ -1,32 +1,30 @@
 import { Router } from "express";
-import { findLatest, findRevision, findOldestRecord } from '../controllers/motorwayControllers'
+import { findStateLog } from '../controllers/motorwayControllers'
+import NodeCache from "node-cache";
+const myCache = new NodeCache();
 
 const motorwayRouter = Router()
 
-motorwayRouter.get('/motorway/:title/:timeStamp', async (req, res) => {
-    const { title, timeStamp } = req.params
+// Todo: implement caching
+// add validation for correct timestamp?
+motorwayRouter.get('/motorway/:id/:timeStamp', async (req, res) => {
+    const { id, timeStamp } = req.params
+    const cachedLog = myCache.get(`${id}-${timeStamp}`)
 
-    try {
-        const foundLatest = await findLatest(title, timeStamp)
-        if (foundLatest.length > 0) {
-            req.log.info('foundLatest', foundLatest)
-            return res.status(200).json(foundLatest)
-        } else {
-            const foundRevision = await findRevision(title, timeStamp)
-      
-            if (foundRevision) {
-                req.log.info('foundRevision', foundRevision)
-                return res.status(200).json(foundRevision)
-            } else {
-                const oldestRecord = await findOldestRecord(title)
-                return oldestRecord ? res.status(200).json(oldestRecord) : res.status(404).json('Not found')
-            }
+    if (!cachedLog) {
+        try {
+            const foundLog = await findStateLog(id, timeStamp)
+            // set the log in the cache
+            myCache.set(`${id}-${timeStamp}`, foundLog)
+            req.log.info('statelog:', foundLog)
+            res.status(200).json(foundLog)
+        } catch (error) {
+            req.log.error(error)
+            res.status(400).json('retreive failed')
         }
-
-    } catch (error) {
-        req.log.error(error)
-        res.status(400).json('retreive failed')
     }
+
+    res.status(400).json(cachedLog)
 })
 
 export {
