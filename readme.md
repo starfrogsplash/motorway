@@ -3,6 +3,8 @@
 A motorway app api which has one to many relationship model (vehicles and its statelogs) built using:
 TypeScript, jest, knex, postgres, Docker-compose
 
+<img width="1324" alt="Screenshot 2022-10-17 at 00 44 22" src="https://user-images.githubusercontent.com/22579826/196064623-6af8e566-aaaf-4323-8dda-f594b2e8080e.png">
+
 
 ## Installation
 
