@@ -2,7 +2,7 @@
 @swagger
 * components:
 *     schemas:
-*       document:
+*       statelog:
 *         type: object
 *         required:
 *           - id
@@ -53,7 +53,7 @@
  * @swagger
  * /motorway/{id}/{timeStamp}:
  *    get:
- *      summary: get latest revision of document
+ *      summary: get entry of statelog based on timestamp and vehicle id
  *      tags: [motorway]
  *      parameters:
  *        - in: path
@@ -61,18 +61,18 @@
  *          schema:
  *            type: string
  *          required: true
- *          description: id of the document
+ *          description: id of the statelog
  *        - in: path
  *          name: timeStamp
  *          schema:
  *            type: string
  *          required: true
- *          description: timeStamp of the document in iso string format
+ *          description: timeStamp of the statelog in iso string format
  *          example:
  *            '2022-10-10T20:03:21Z'
  *      responses:
  *        "200":
- *          description: return document
+ *          description: return statelog
  *          content:
  *            application/json:
  *              schema:
