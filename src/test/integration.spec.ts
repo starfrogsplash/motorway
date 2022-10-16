@@ -1,27 +1,29 @@
 import request from 'supertest'
 import { app } from '../app'
-import { globalSetUp } from './global-setup'
 import { statelogCache } from '../utils/cache'
 import * as motorwayControllers from "../controllers/motorwayControllers";
+ //@ts-ignore
+import db from '../../knexConfig'
 
 const mockedFindStateLog = jest.spyOn(motorwayControllers, 'findStateLog');
 const mockedCache = jest.spyOn(statelogCache, 'get');
 
 describe('GET /motorways/vehicleId/timestamp', () => {
-  let knex: any
   const database = 'motorwayTest'
 
     beforeAll(async () => {
-      knex = await globalSetUp(database)
+
+      //@ts-ignore
+      await db.migrate.latest()
     })
 
     afterEach(async () => {
       jest.resetAllMocks()
     })
 
-    afterAll((done) => {
-      knex.destroy()
-      done()
+    afterAll(async() => {
+       //@ts-ignore
+      await db.destroy()
    })
   
     describe('fetch statelogs', () => {

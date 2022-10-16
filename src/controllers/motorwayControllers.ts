@@ -1,7 +1,9 @@
-import getNextConnection from '../../knexConfig'
+//@ts-ignore
+import knex from '../../knexConfig'
 
 const findStateLog = async (vehicleId: string, timestamp: string) => {
-  const knex = getNextConnection()
+  // const knex = getNextConnection()
+  //@ts-ignore
   return await knex('stateLogs')
     .select()
     .where('vehicleId', vehicleId)

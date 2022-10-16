@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development npm run migrateUp && nodemon ./src/index.ts | npx pino-pretty -i time",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "compile": "tsc",
     "createMigration": "knex migrate:make",
     "migrateUp": "knex migrate:up",

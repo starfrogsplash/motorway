@@ -20,6 +20,7 @@ services:
     environment:
       POSTGRES_USER: testUser
       POSTGRES_PASSWORD: testPassword
+      POSTGRES_DB: motorwayTest
     ports:
       - "5400:5432"
     networks:

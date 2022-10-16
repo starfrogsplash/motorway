@@ -24,6 +24,7 @@ DB=motorway
 DB_TEST_HOST=localhost
 TEST_USER=testUser
 TEST_PASS=testPassword
+DB_TEST=motorwayTest
 ```
 
 2. To spin up databases and the app
@@ -37,6 +38,12 @@ docker-compose up
 ###
 ```
 npm run test
+```
+
+4. To spin close down the databases and the app
+
+```
+docker-compose down
 ```
 
 ###
