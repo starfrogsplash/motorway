@@ -4,6 +4,8 @@ import {motorwayRouter} from './routes/motorwayRouter'
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
 import expressPino from "express-pino-logger";
+import expressRateLimit from 'express-rate-limit';
+import helmet from "helmet";
 
 const app = express()
 
@@ -25,13 +27,21 @@ const options = {
     apis: ["**/*.ts"]
 };
 
-const specs = swaggerJsdoc(options);
+const swaggerSpecs = swaggerJsdoc(options);
 app.use(
     "/api-docs",
     swaggerUi.serve,
-    swaggerUi.setup(specs, { explorer: true })
+    swaggerUi.setup(swaggerSpecs, { explorer: true })
 );
 
+const rateLimit = expressRateLimit({
+    windowMs: 60 * 1000, // 1 in minute
+    max: 1000,
+    message: 'You have exceeded 1000 requests limit in 1 minute!', 
+  });
+
+app.use(rateLimit)
+app.use(helmet())
 app.use(expressPino())
 app.use(json())
 app.use(motorwayRouter)

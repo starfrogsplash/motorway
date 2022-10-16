@@ -1,12 +1,12 @@
 import getNextConnection from '../../knexConfig'
 
-const findStateLog = async (id: string, timeStamp: string) => {
+const findStateLog = async (vehicleId: string, timestamp: string) => {
   const knex = getNextConnection()
   return await knex('stateLogs')
     .select()
-    .where('id', id)
-    .where('timeStamp', '<=', timeStamp)
-    .orderBy('revision', 'desc')
+    .where('vehicleId', vehicleId)
+    .where('timestamp', '<=', timestamp)
+    .orderBy('timestamp', 'desc')
     .first()
 }
 
