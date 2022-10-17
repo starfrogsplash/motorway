@@ -2,18 +2,13 @@ import request from 'supertest'
 import { app } from '../app'
 import { statelogCache } from '../utils/cache'
 import * as motorwayControllers from "../controllers/motorwayControllers";
- //@ts-ignore
 import db from '../../knexConfig'
 
 const mockedFindStateLog = jest.spyOn(motorwayControllers, 'findStateLog');
 const mockedCache = jest.spyOn(statelogCache, 'get');
 
 describe('GET /motorways/vehicleId/timestamp', () => {
-  const database = 'motorwayTest'
-
     beforeAll(async () => {
-
-      //@ts-ignore
       await db.migrate.latest()
     })
 
@@ -22,7 +17,6 @@ describe('GET /motorways/vehicleId/timestamp', () => {
     })
 
     afterAll(async() => {
-       //@ts-ignore
       await db.destroy()
    })
   
